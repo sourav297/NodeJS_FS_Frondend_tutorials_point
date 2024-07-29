@@ -50,6 +50,9 @@
               action="/register"
               method="post"
             >
+              <% if(typeof(message) != "undefined") { %>
+              <h4 style="color: red;"><%-message%></h4>
+              <% } %>
               <!-- firstName input -->
               <div class="row input-group-newsletter">
                 <div class="col">
@@ -60,7 +63,14 @@
                     name="firstName"
                     placeholder="Enter firstName..."
                     aria-label="Enter firstName..."
+
+                    <% if(typeof(body) !== "undefined") { %>
+                    value="<%-body.firstName%>"
+                    <% } %>
                   />
+                  <% if(typeof(errs) != "undefined") { %>
+                  <span style="color: red;"><%-errs.firstNameMsg%></span>
+                  <% } %>
                 </div>
               </div>
               <div class="space"></div>
@@ -74,7 +84,14 @@
                     name="lastName"
                     placeholder="Enter lastName..."
                     aria-label="Enter lastName..."
+
+                    <% if(typeof(body) !== "undefined") { %>
+                      value="<%-body.lastName%>"
+                      <% } %>
                   />
+                  <% if(typeof(errs) != "undefined") { %>
+                    <span style="color: red;"><%-errs.lastNameMsg%></span>
+                    <% } %>
                 </div>
               </div>
               <div class="space"></div>
@@ -88,7 +105,14 @@
                     name="address"
                     placeholder="Enter address..."
                     aria-label="Enter address..."
+
+                    <% if(typeof(body) !== "undefined") { %>
+                      value="<%-body.address%>"
+                      <% } %>
                   />
+                  <% if(typeof(errs) != "undefined") { %>
+                    <span style="color: red;"><%-errs.addressMsg%></span>
+                    <% } %>
                 </div>
               </div>
               <div class="space"></div>
@@ -102,7 +126,14 @@
                     name="city"
                     placeholder="Enter city..."
                     aria-label="Enter city..."
+
+                    <% if(typeof(body) !== "undefined") { %>
+                      value="<%-body.city%>"
+                      <% } %>
                   />
+                  <% if(typeof(errs) != "undefined") { %>
+                    <span style="color: red;"><%-errs.cityMsg%></span>
+                    <% } %>
                 </div>
               </div>
               <div class="space"></div>
@@ -116,7 +147,14 @@
                     name="state"
                     placeholder="Enter state..."
                     aria-label="Enter state..."
+
+                    <% if(typeof(body) !== "undefined") { %>
+                      value="<%-body.state%>"
+                      <% } %>
                   />
+                  <% if(typeof(errs) != "undefined") { %>
+                    <span style="color: red;"><%-errs.stateMsg%></span>
+                    <% } %>
                 </div>
               </div>
               <div class="space"></div>
@@ -130,7 +168,14 @@
                     name="zipcode"
                     placeholder="Enter zipcode..."
                     aria-label="Enter zipcode..."
+
+                    <% if(typeof(body) !== "undefined") { %>
+                      value="<%-body.zipcode%>"
+                      <% } %>
                   />
+                  <% if(typeof(errs) != "undefined") { %>
+                    <span style="color: red;"><%-errs.zipcodeMsg%></span>
+                    <% } %>
                 </div>
               </div>
               <div class="space"></div>
@@ -144,8 +189,14 @@
                     name="email"
                     placeholder="Enter email address..."
                     aria-label="Enter email address..."
-                    data-sb-validations="required,email"
+
+                    <% if(typeof(body) !== "undefined") { %>
+                      value="<%-body.email%>"
+                      <% } %>
                   />
+                  <% if(typeof(errs) != "undefined") { %>
+                    <span style="color: red;"><%-errs.emailMsg%></span>
+                    <% } %>
                 </div>
               </div>
               <div class="space"></div>
@@ -160,6 +211,9 @@
                     placeholder="Enter password..."
                     aria-label="Enter password..."
                   />
+                  <% if(typeof(errs) != "undefined") { %>
+                    <span style="color: red;"><%-errs.passwordMsg%></span>
+                    <% } %>
                 </div>
               </div>
               <div class="space"></div>
@@ -174,6 +228,9 @@
                     placeholder="Confirm Password..."
                     aria-label="Confirm Password..."
                   />
+                  <% if(typeof(errs) != "undefined") { %>
+                    <span style="color: red;"><%-errs.cpasswordMsg%></span>
+                    <% } %>
                 </div>
               </div>
               <div class="space"></div>

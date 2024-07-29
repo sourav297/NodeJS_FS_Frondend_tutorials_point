@@ -36,7 +36,7 @@
         <div class="row gx-4 gx-lg-5">
           <div class="col-md-10 col-lg-8 mx-auto text-center">
             <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-            <h2 class="text-white mb-5">Login!</h2>
+            <h2 class="text-white mb-5">Login Please!</h2>
             <!-- * * * * * * * * * * * * * * *-->
             <!-- * * SB Forms Contact Form * *-->
             <!-- * * * * * * * * * * * * * * *-->
@@ -51,6 +51,9 @@
               action="/login"
               method="post"
             >
+            <% if(typeof(message) != "undefined") { %>
+              <h4 style="color: green;"><%-message%></h4>
+              <% } %>
               <!-- Email address input-->
               <div class="row input-group-newsletter">
                 <div class="col">
@@ -61,11 +64,18 @@
                     name="email"
                     placeholder="Enter email address..."
                     aria-label="Enter email address..."
+
+                    <% if(typeof(body) !== "undefined") { %>
+                      value="<%-body.email%>"
+                      <% } %>
                   />
+                  <% if(typeof(errs) != "undefined") { %>
+                    <span style="color: red;"><%-errs.emailMsg%></span>
+                  <% } %>
                 </div>
               </div>
               <div class="space"></div>
-              <div>
+              <div class="row input-group-newsletter">
                 <div class="col">
                   <input
                     class="form-control"
@@ -75,6 +85,9 @@
                     placeholder="Enter password..."
                     aria-label="Enter password..."
                   />
+                  <% if(typeof(errs) != "undefined") { %>
+                    <span style="color: red;"><%-errs.passwordMsg%></span>
+                    <% } %>
                 </div>
               </div>
               <div class="space"></div>
