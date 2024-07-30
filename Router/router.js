@@ -4,13 +4,55 @@ const {validateRegistration, validateLogin} = require('../validation/validation.
 const isEmpty = require('../utilities/util.js');
 const messages = require('../utilities/messages.js');
 const {postRegister, postLogin}=require('../services/userServices.js');
+let session = require('express-session');
+require('dotenv').config();
+
+
+//use middleware to create express Session
+router.use(session({
+    secret: process.env.secret,
+    resave: false,
+    saveUninitialized: true
+  }))
+
 
 router.get('/', (req, res)=>{
-    res.render('home', {pagename:"Home"})
+    session=req.session;
+    res.render('home', {pagename:"Home", session: session})
 })
 
 router.get('/login', (req, res)=>{
-    res.render('login', {pagename:"Login"})
+    session=req.session;
+    res.render('login', {pagename:"Login", session: session})
+})
+
+router.get('/register', (req, res)=>{
+    session=req.session;
+    res.render('register', {pagename:"Register", session: session})
+})
+
+router.get('/about', (req, res)=>{
+    session=req.session;
+    res.render('about', {pagename:"About", session: session})
+})
+
+router.get('/authors', (req, res)=>{
+    session=req.session;
+    res.render('authors', {pagename:"Authors", session: session})
+})
+
+router.get('/books', (req, res)=>{
+    session=req.session;
+    res.render('books', {pagename:"Books", session: session})
+})
+
+router.get('/logout', (req, res)=>{
+    req.session.destroy(null);
+    //session="undefined";
+    res.render('home', {
+        pagename: "Home",
+        //session: session
+    })
 })
 
 router.post('/register', (req, res)=>{
@@ -20,7 +62,8 @@ router.post('/register', (req, res)=>{
     if(isEmpty(errors)){
         //call the backend
         postRegister(req.body).then(
-            result => {
+            (result) => {
+                console.log(result);
                 res.render('login', {
                     pagename: "Login", 
                     message: result.data.message
@@ -43,14 +86,18 @@ router.post('/register', (req, res)=>{
 
 router.post('/login', (req, res)=>{
     console.log('Logging in...');
+    session=req.session;
     const errors=validateLogin(req.body);
     if(isEmpty(errors)){
         //call backend
         postLogin(req.body).then(
-            result => {
+            (result) => {
+                console.log(result);
+                session.logged=result.data.Logged;
                 res.render('home', {
                     pagename: "Home",
-                    message: result.data.message
+                    message: result.data.message,
+                    session: session
                 });
             }
         ).catch(
@@ -66,25 +113,6 @@ router.post('/login', (req, res)=>{
         res.render('login', {pagename:"Login", body: req.body, errs: errors, message: messages.failed_login});
     }
 })
-
-router.get('/register', (req, res)=>{
-    res.render('register', {pagename:"Register"})
-})
-
-
-router.get('/about', (req, res)=>{
-    res.render('about', {pagename:"About"})
-})
-
-router.get('/authors', (req, res)=>{
-    res.render('authors', {pagename:"Authors"})
-})
-
-router.get('/books', (req, res)=>{
-    res.render('books', {pagename:"Books"})
-})
-
-
 
 
 module.exports=router;
