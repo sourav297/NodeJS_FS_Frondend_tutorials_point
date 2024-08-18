@@ -1,7 +1,9 @@
 const express=require('express');
 const cors=require('cors');
 const app=express();
-const router=require('../Router/userRouter');
+const userRouter=require('../Router/userRouter');
+const bookRouter=require('../Router/bookRouter');
+const authorRouter=require('../Router/authorRouter');
 
 //cors middleware
 app.use(cors());
@@ -16,7 +18,11 @@ app.engine('ejs', require('ejs').__express);
 app.use(express.static('public'));
 app.use(express.static('views'));
 
-app.use('/', router);
+app.use('/', userRouter);
+
+// app.use('/books', bookRouter);
+
+// app.use('/authors', authorRouter);
 
 
 app.get('/', ()=>{

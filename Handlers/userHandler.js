@@ -37,7 +37,7 @@ const getLogoutHandler = (req, res)=>{
 const postRegisterHandler = async (req, res)=>{
     try{
         session = req.session;
-        console.log('Registering:::::::::::::::::::::::::::::::::::::::::::::');
+        console.log('Registering::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::');
         const errors = validateRegistration(req.body);
         console.log(errors);
         if(isEmpty(errors)){
@@ -57,24 +57,29 @@ const postRegisterHandler = async (req, res)=>{
 
 const postLoginHandler = async(req, res)=>{
     try{
-        console.log('Logging in..................................');
+        console.log('Logging in:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::');
         session = req.session;
         const errors = validateLogin(req.body);
         if(isEmpty(errors)){
             //Call Backend...........
-            const result = await postLogin(req.body);
-            console.log(result.data);
-            session.logged = result.data.Logged;
-            session.firstName = result.data.Result.firstName;
-            session.lname = result.data.Result.lastName;
-            return successTemplate(res, 'home', 'Home', result.data.message, session);
+            try{
+                const result = await postLogin(req.body);
+                session.logged = result.data.Logged;
+                session.firstName = result.data.Result.firstName;
+                session.lname = result.data.Result.lastName;
+                session.token = result.data.Token;
+                return successTemplate(res, 'home', 'Home', result.data.message, session);
+            }
+            catch(err){
+                return errorTmeplate(req, res, 'login', 'Login', 'Authentication failed, User email or password NOT matched',errors, session);
+            }
         }
         else{
             return errorTmeplate(req, res, 'login', 'Login', messages.failed_login, errors, session);
         }
     }
     catch(err){
-        return errorTmeplate(req, res, 'login', 'Login', err.response.data.error.message);
+        return errorTmeplate(req, res, 'login', 'Login', err.message);
     }
 }
 
