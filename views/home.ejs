@@ -25,8 +25,8 @@
                     <div class="text-center">
                         <h1 class="mx-auto my-0 text-uppercase">Grayscale</h1>
                         <h2 class="text-white-50 mx-auto mt-2 mb-5">A free, responsive, one page Bootstrap theme created by Start Bootstrap.</h2>
-                        <% if(typeof(message) != "undefined") { %>
-                            <h3 style="color: green;"><%-message%></h3>
+                        <% if(typeof(message) != "undefined" && typeof(session) != "undefined") { %>
+                            <h3 style="color: rgb(47, 6, 136);"><%-`Welcome ${session.firstName} ${session.lname} You have ${message}`%></h3>
                             <% } %>
                         <a class="btn btn-primary" href="/">Get Started</a>
                     </div>

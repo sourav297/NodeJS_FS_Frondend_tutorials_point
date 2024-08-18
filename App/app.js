@@ -1,7 +1,7 @@
 const express=require('express');
 const cors=require('cors');
 const app=express();
-const router=require('../Router/router');
+const router=require('../Router/userRouter');
 
 //cors middleware
 app.use(cors());

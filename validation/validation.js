@@ -21,7 +21,7 @@ const validateRegistration = (body) => {
     errors.stateMsg = "State is required or it is invalid";
   }
   //zipcode
-  if (body.zipcode.trim().length != 3 || !/[0-9]+$/.test(body.zipcode.trim())) {
+  if (body.zipcode.trim().length < 3 || !/[0-9]+$/.test(body.zipcode.trim())) {
     errors.zipcodeMsg = "zip code format is 123";
   }
   //email
