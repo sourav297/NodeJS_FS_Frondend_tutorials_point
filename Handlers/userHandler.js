@@ -8,7 +8,7 @@ const messages = require('../utilities/messages.js');
 
 const getHomeHandler = (req, res)=>{
     session=req.session;
-    return successTemplate(res, 'home', 'Home', null, session);
+    return successTemplate(res, 'home', 'Home', "Have A Great Day", session);
 }
 
 const getLoginHandler = (req, res)=>{
@@ -62,24 +62,20 @@ const postLoginHandler = async(req, res)=>{
         const errors = validateLogin(req.body);
         if(isEmpty(errors)){
             //Call Backend...........
-            try{
-                const result = await postLogin(req.body);
-                session.logged = result.data.Logged;
-                session.firstName = result.data.Result.firstName;
-                session.lname = result.data.Result.lastName;
-                session.token = result.data.Token;
-                return successTemplate(res, 'home', 'Home', result.data.message, session);
-            }
-            catch(err){
-                return errorTmeplate(req, res, 'login', 'Login', 'Authentication failed, User email or password NOT matched',errors, session);
-            }
+            const result = await postLogin(req.body);
+            session.logged = result.data.Logged;
+            session.firstName = result.data.Result.firstName;
+            session.lname = result.data.Result.lastName;
+            session.token = result.data.Token;
+            return successTemplate(res, 'home', 'Home', result.data.message, session);
         }
         else{
             return errorTmeplate(req, res, 'login', 'Login', messages.failed_login, errors, session);
         }
     }
     catch(err){
-        return errorTmeplate(req, res, 'login', 'Login', err.message);
+        console.log(err.response);
+        return errorTmeplate(req, res, 'login', 'Login', err.response.data.error.message, 'undefined', 'undefined');
     }
 }
 

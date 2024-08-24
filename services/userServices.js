@@ -1,4 +1,5 @@
 const axios=require('axios');
+const errorTemplate = require('../templates/errorTemplate');
 require('dotenv').config();
 
 const postRegister = async(body)=>{
@@ -18,12 +19,11 @@ const postRegister = async(body)=>{
 
 const postLogin = async(body)=>{
     console.log('posting login...........');
+    
     const result = await axios.post(process.env.url+'/users/login', {
         email: body.email,
         password: body.password
     });
-    console.log(result.data);
-    console.log(result.status);
     return result;
 }
 

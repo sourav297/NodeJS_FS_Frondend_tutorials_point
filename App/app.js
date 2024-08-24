@@ -20,7 +20,7 @@ app.use(express.static('views'));
 
 app.use('/', userRouter);
 
-// app.use('/books', bookRouter);
+app.use('/books', bookRouter);
 
 // app.use('/authors', authorRouter);
 
