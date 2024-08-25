@@ -51,7 +51,7 @@ const postRegisterHandler = async (req, res)=>{
         }
     }
     catch(err){
-        return errorTmeplate(req, res, 'register', 'Register', err.response.data.error.message);
+        return errorTmeplate(req, res, 'register', 'Register', err.response.data.error.message, 'undefined', 'undefined');
     } 
 }
 
@@ -62,6 +62,7 @@ const postLoginHandler = async(req, res)=>{
         const errors = validateLogin(req.body);
         if(isEmpty(errors)){
             //Call Backend...........
+            console.log("Inside if --> if there is NO errors in validation");
             const result = await postLogin(req.body);
             session.logged = result.data.Logged;
             session.firstName = result.data.Result.firstName;
@@ -70,11 +71,13 @@ const postLoginHandler = async(req, res)=>{
             return successTemplate(res, 'home', 'Home', result.data.message, session);
         }
         else{
+            console.log("Inside else --> if there is some errors in validation");
             return errorTmeplate(req, res, 'login', 'Login', messages.failed_login, errors, session);
         }
     }
     catch(err){
-        console.log(err.response);
+        console.log("Inside catch ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,");
+        console.log(err.response.data);
         return errorTmeplate(req, res, 'login', 'Login', err.response.data.error.message, 'undefined', 'undefined');
     }
 }

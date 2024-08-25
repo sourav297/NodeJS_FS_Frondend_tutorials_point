@@ -1,18 +1,23 @@
 const express=require('express');
 const bookRouter=express.Router();
-let session = require('express-session');
-const successTemplate = require('../templates/successTemplate');
-const errorTemplate = require('../templates/errorTemplate');
-require('dotenv').config();
+const {getBookHandler, postBookHandler, updateBookHandler, addBookHandler, editBookHandler, deleteBookHandler} = require('../Handlers/bookHandler');
 
-bookRouter.get('/', (req, res)=>{
-    try{
-        session = req.session;
-        return successTemplate(res, 'books', 'Books', "Books Section Found", session);
-    }
-    catch(err){
-        return errorTemplate(req, res, 'home', 'Home', "error occured", err, session);
-    }
-})
+//get all book from the db
+bookRouter.get('/', getBookHandler);
+
+//post a book to the db
+bookRouter.post('/', postBookHandler);
+
+//update a book by its id in the db
+bookRouter.post('/update', updateBookHandler);
+
+//get add book handler
+bookRouter.get('/addBook', addBookHandler);
+
+//get edit book handler
+bookRouter.get('/editBook/:bookId', editBookHandler);
+
+//get delete book handler
+bookRouter.get('/deleteBook/:bookId', deleteBookHandler);
 
 module.exports = bookRouter;
