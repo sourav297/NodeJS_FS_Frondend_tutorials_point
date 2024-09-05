@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title><%= pagename %></title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/css/styles.css" rel="stylesheet" />
+  </head>
+  <body id="page-top">
+    <!-- Navigation-->
+    <%- include('includes/nav') %>
+    <!-- Signup-->
+    <section class="signup-section" id="signup">
+      <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5">
+          <div class="col-md-10 col-lg-8 mx-auto text-center">
+            <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
+            <h2 class="text-white mb-5">Edit an Author</h2>
+            <!--id previously was contactForm -->
+            <form
+              class="form-signup"
+              id="editAuthorForm"
+              action="/authors/updateAuthor"
+              method="post"
+            >
+              <% if(typeof(message) != "undefined") { %>
+              <h4 style="color: green;"><%-message + " To Edit" %></h4>
+              <% } %>
+              <!-- name input -->
+              <div class="row input-group-newsletter">
+                <div class="col">
+                  <% if(typeof(data) != 'undefined') {%>
+                    <input type="hidden" id="authorId" name="authorId" value="<%- data._id %>" />
+                  <%}%>
+                  <input
+                    class="form-control"
+                    id="name"
+                    type="text"
+                    name="name"
+                    placeholder="Enter Name of Author: "
+                    aria-label="Enter Name of Author: "
+
+                    <% if(typeof(data) != "undefined") { %>
+                    value="<%- data.name %>"
+                    <% } %>
+                  />
+                  <% if(typeof(errs) != "undefined") { %>
+                  <span style="color: red;"><%-errs.nameMsg%></span>
+                  <% } %>
+                </div>
+              </div>
+              <div class="space"></div>
+              <!-- publisher input  -->
+              <div class="row input-group-newsletter">
+                <div class="col">
+                  <input
+                    class="form-control"
+                    id="publisher"
+                    type="text"
+                    name="publisher"
+                    placeholder="Enter Publisher: "
+
+                    <% if(typeof(data) !== "undefined") { %>
+                      value="<%- data.publisher %>"
+                      <% } %>
+                  />
+                  <% if(typeof(errs) != "undefined") { %>
+                    <span style="color: red;"><%-errs.publisherMsg%></span>
+                    <% } %>
+                </div>
+              </div>
+              <div class="space"></div>
+              <!-- website input  -->
+              <div class="row input-group-newsletter">
+                <div class="col">
+                  <input
+                    class="form-control"
+                    id="website"
+                    type="text"
+                    name="website"
+                    placeholder="Enter Website: "
+
+                    <% if(typeof(data) !== "undefined") { %>
+                      value="<%- data.website %>"
+                      <% } %>
+                  />
+                  <% if(typeof(errs) != "undefined") { %>
+                    <span style="color: red;"><%-errs.websiteMsg%></span>
+                    <% } %>
+                </div>
+              </div>
+              <div class="space"></div>
+              <!-- about input  -->
+              <div class="row input-group-newsletter">
+                <div class="col">
+                  <input
+                    class="form-control"
+                    id="about"
+                    type="text"
+                    name="about"
+                    placeholder="Enter about Author: "
+
+                    <% if(typeof(data) !== "undefined") { %>
+                      value="<%- data.about %>"
+                      <% } %>
+                  />
+                  <% if(typeof(errs) != "undefined") { %>
+                    <span style="color: red;"><%-errs.aboutMsg%></span>
+                    <% } %>
+                </div>
+              </div>
+
+              <div class="space"></div>
+              <div>
+                <div class="col-auto">
+                  <button style="background-color: coral; text-overflow: ellipsis; border: none;"
+                    class="btn btn-primary"
+                    id="submitButton"
+                    type="submit"
+                    name="editAuthor-btn"
+                  >
+                    Edit Author
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <%- include('includes/footer') %><!-- Footer-->
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="/js/scripts.js"></script>
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <!-- * *                               SB Forms JS                               * *-->
+    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+  </body>
+</html>

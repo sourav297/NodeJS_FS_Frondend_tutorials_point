@@ -4,6 +4,7 @@ const app=express();
 const userRouter=require('../Router/userRouter');
 const bookRouter=require('../Router/bookRouter');
 const authorRouter=require('../Router/authorRouter');
+const session = require('express-session');
 
 //cors middleware
 app.use(cors());
@@ -18,18 +19,23 @@ app.engine('ejs', require('ejs').__express);
 app.use(express.static('public'));
 app.use(express.static('views'));
 
+//user router
 app.use('/', userRouter);
 
+//book router
 app.use('/books', bookRouter);
 
-// app.use('/authors', authorRouter);
+//author router
+app.use('/authors', authorRouter);
 
+//If any bad url is given
+app.use((req, res) => {
+    res.status(404).render('404', {session: session});
+});
 
+//health point of this frontend app
 app.get('/', ()=>{
     console.log('Welcome to frondend webpage');
 });
-
-
-
 
 module.exports=app;
