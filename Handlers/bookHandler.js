@@ -11,8 +11,9 @@ const getBookHandler = async(req, res) => {
         //console.log(req.headers);
         req.headers.authorization = 'Bearer: '+ session.token;
         const books = await getBooks(req);
+        //console.log(books.data);
         if(!isEmpty(books.data.Result)){
-            //console.log(books.data);
+            
             return successTemplate(res, 'books', "Books", books.data.message, session, books.data.Result);
         }
         else{
@@ -21,7 +22,7 @@ const getBookHandler = async(req, res) => {
     }
     catch(err){
         console.log("Error in getBookHandler");
-        return errorTemplate(req, res, 'books', "Books", err.message, 'undefined', 'undefined');
+        return errorTemplate(req, res, 'books', "Books", err.response.data.error.message, 'undefined', 'undefined');
     }
 }
 
@@ -36,7 +37,7 @@ const postBookHandler = async(req, res) => {
     }
     catch(err){
         console.log("Error in postBookHandler");
-        return errorTemplate(req, res, 'books', "Books", err.message, 'undefined', 'undefined');
+        return errorTemplate(req, res, 'books', "Books", err.response.data.error.message, 'undefined', 'undefined');
     }
 }
 
@@ -48,7 +49,7 @@ const addBookHandler = async(req, res) => {
     }
     catch(err){
         console.log("Error in addBookHandler");
-        return errorTemplate(req, res, 'books', "Books", err.message, 'undefined', 'undefined');
+        return errorTemplate(req, res, 'books', "Books", err.response.data.error.message, 'undefined', 'undefined');
     }
 }
 
@@ -63,7 +64,7 @@ const updateBookHandler = async(req, res) => {
     }
     catch(err){
         console.log("Error in updateBookHandler");
-        return errorTemplate(req, res, 'books', "Books", err.message, 'undefined', 'undefined');
+        return errorTemplate(req, res, 'books', "Books", err.response.data.error.message, 'undefined', 'undefined');
     }
 }
 
@@ -77,7 +78,7 @@ const editBookHandler = async(req, res) => {
     }
     catch(err){
         console.log("Error in editBookHandler");
-        return errorTemplate(req, res, 'books', "Books", err.message, 'undefined', 'undefined');
+        return errorTemplate(req, res, 'books', "Books", err.response.data.error.message, 'undefined', 'undefined');
     }
 }
 
@@ -91,7 +92,7 @@ const deleteBookHandler = async(req, res) => {
     }
     catch(err){
         console.log("Error in deleteBookHandler: ", err);
-        return errorTemplate(req, res, 'books', "Books", err, 'undefined', 'undefined');
+        return errorTemplate(req, res, 'books', "Books", err.response.data.error.message, 'undefined', 'undefined');
     }
 }
 

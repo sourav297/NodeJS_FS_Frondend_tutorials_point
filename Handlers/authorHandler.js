@@ -23,7 +23,7 @@ const getAuthorHandler = async(req, res)=>{
     }
     catch(err){
         console.log("Error in getAuthorHandler");
-        return errorTemplate(req, res, 'authors', "Auhtors", 'undefined', 'undefined');
+        return errorTemplate(req, res, 'authors', "Auhtors", err.response.data.error.message, 'undefined', 'undefined');
     }
 }
 
@@ -37,7 +37,7 @@ const postAuthorHandler = async(req, res)=>{
     }
     catch(err){
         console.log("Error in postAuthorHandler");
-        return errorTemplate(req, res, 'authors', "Auhtors", 'undefined', 'undefined');
+        return errorTemplate(req, res, 'authors', "Auhtors", err.response.data.error.message, 'undefined', 'undefined');
     }
 }
 
@@ -58,7 +58,7 @@ const addAuthorHandler = async(req, res)=>{
     }
     catch(err){
         console.log("Error in addAuthorHandler");
-        return errorTemplate(req, res, 'authors', "Auhtors", 'undefined', 'undefined');
+        return errorTemplate(req, res, 'authors', "Auhtors", err.response.data.error.message, 'undefined', 'undefined');
     }
 }
 
@@ -73,7 +73,7 @@ const updateAuthorHandler = async(req, res)=>{
     }
     catch(err){
         console.log("Error in updateAuthorHandler");
-        return errorTemplate(req, res, 'authors', "Auhtors", 'undefined', 'undefined');
+        return errorTemplate(req, res, 'authors', "Auhtors", err.response.data.error.message, 'undefined', 'undefined');
     }
 }
 
@@ -86,7 +86,7 @@ const editAuthorHandler = async(req, res)=>{
     }
     catch(err){
         console.log("Error in editAuthorHandler");
-        return errorTemplate(req, res, 'authors', "Auhtors", 'undefined', 'undefined');
+        return errorTemplate(req, res, 'authors', "Auhtors", err.response.data.error.message, 'undefined', 'undefined');
     }
 }
 
@@ -100,7 +100,7 @@ const deleteAuthorHandler = async(req, res)=>{
     }
     catch(err){
         console.log("Error in deleteAuthorHandler");
-        return errorTemplate(req, res, 'authors', "Auhtors", 'undefined', 'undefined');
+        return errorTemplate(req, res, 'authors', "Auhtors", err.response.data.error.message, 'undefined', 'undefined');
     }
 }
 
