@@ -22,7 +22,7 @@ const getAuthorHandler = async(req, res)=>{
         }
     }
     catch(err){
-        console.log("Error in getAuthorHandler");
+        //console.log("Error in getAuthorHandler");
         return errorTemplate(req, res, 'authors', "Auhtors", err.response.data.error.message, 'undefined', 'undefined');
     }
 }
@@ -36,7 +36,7 @@ const postAuthorHandler = async(req, res)=>{
         return successTemplate(res, 'authors', "Authors", authors.data.message, session, authors.data.Result);
     }
     catch(err){
-        console.log("Error in postAuthorHandler");
+        //console.log("Error in postAuthorHandler");
         return errorTemplate(req, res, 'authors', "Auhtors", err.response.data.error.message, 'undefined', 'undefined');
     }
 }
@@ -57,7 +57,7 @@ const addAuthorHandler = async(req, res)=>{
         }
     }
     catch(err){
-        console.log("Error in addAuthorHandler");
+        //console.log("Error in addAuthorHandler");
         return errorTemplate(req, res, 'authors', "Auhtors", err.response.data.error.message, 'undefined', 'undefined');
     }
 }
@@ -68,11 +68,11 @@ const updateAuthorHandler = async(req, res)=>{
         req.headers.authorization = 'Bearer: ' + session.token;
         const author = await updateAuthorById(req);
         const authors = await getAuthors(req);
-        console.log(authors);
+        //console.log(authors);
         return successTemplate(res, 'authors', "Authors", authors.data.message, session, authors.data.Result);
     }
     catch(err){
-        console.log("Error in updateAuthorHandler");
+        //console.log("Error in updateAuthorHandler");
         return errorTemplate(req, res, 'authors', "Auhtors", err.response.data.error.message, 'undefined', 'undefined');
     }
 }
@@ -85,7 +85,7 @@ const editAuthorHandler = async(req, res)=>{
         return successTemplate(res, 'editAuthor', "Edit an Author", messages.edit_info_auhtor, session, author.data.Result);
     }
     catch(err){
-        console.log("Error in editAuthorHandler");
+        //console.log("Error in editAuthorHandler");
         return errorTemplate(req, res, 'authors', "Auhtors", err.response.data.error.message, 'undefined', 'undefined');
     }
 }
@@ -99,7 +99,7 @@ const deleteAuthorHandler = async(req, res)=>{
         return successTemplate(res, 'authors', "Authors", authors.data.message, session, authors.data.Result);
     }
     catch(err){
-        console.log("Error in deleteAuthorHandler");
+        //console.log("Error in deleteAuthorHandler");
         return errorTemplate(req, res, 'authors', "Auhtors", err.response.data.error.message, 'undefined', 'undefined');
     }
 }

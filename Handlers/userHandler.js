@@ -29,7 +29,7 @@ const getAboutHandler = (req, res)=>{
 const getLogoutHandler = (req, res)=>{
     req.session.destroy();
     session = 'undefined';
-    console.log('Logging out............');
+    //console.log('Logging out............');
     
     return successTemplate(res, 'home', 'Home', null, session);
 }
@@ -37,13 +37,13 @@ const getLogoutHandler = (req, res)=>{
 const postRegisterHandler = async (req, res)=>{
     try{
         session = req.session;
-        console.log('Registering::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::');
+        //console.log('Registering::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::');
         const errors = validateRegistration(req.body);
-        console.log(errors);
+        //console.log(errors);
         if(isEmpty(errors)){
             //Call the backend...
             const result = await postRegister(req.body);
-            console.log(result);
+            //console.log(result);
             return successTemplate(res, 'login', 'Login', result.data.message, session);
         }
         else{
@@ -57,12 +57,12 @@ const postRegisterHandler = async (req, res)=>{
 
 const postLoginHandler = async(req, res)=>{
     try{
-        console.log('Logging in:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::');
+        //console.log('Logging in::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::');
         session = req.session;
         const errors = validateLogin(req.body);
         if(isEmpty(errors)){
             //Call Backend...........
-            console.log("Inside if --> if there is NO errors in validation");
+            //console.log("Inside if --> if there is NO errors in validation");
             const result = await postLogin(req.body);
             session.logged = result.data.Logged;
             session.firstName = result.data.Result.firstName;
@@ -71,13 +71,13 @@ const postLoginHandler = async(req, res)=>{
             return successTemplate(res, 'home', 'Home', result.data.message, session);
         }
         else{
-            console.log("Inside else --> if there is some errors in validation");
+            //console.log("Inside else --> if there is some errors in validation");
             return errorTmeplate(req, res, 'login', 'Login', messages.failed_login, errors, session);
         }
     }
     catch(err){
-        console.log("Inside catch ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,");
-        console.log(err.response.data);
+        //console.log("Inside catch ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,");
+        //console.log(err.response.data);
         return errorTmeplate(req, res, 'login', 'Login', err.response.data.error.message, 'undefined', 'undefined');
     }
 }

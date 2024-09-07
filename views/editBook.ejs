@@ -35,145 +35,150 @@
               <% if(typeof(message) != "undefined") { %>
               <h4 style="color: green;"><%-message + " To Edit" %></h4>
               <% } %>
-              <!-- title input -->
-              <div class="row input-group-newsletter">
-                <div class="col">
-                  <% if(typeof(data) != 'undefined') {%>
-                    <input type="hidden" id="bookId" name="bookId" value="<%- data._id %>" />
-                  <%}%>
-                  <input
-                    class="form-control"
-                    id="title"
-                    type="text"
-                    name="title"
-                    placeholder="Enter Title..."
-                    aria-label="Enter title..."
 
-                    <% if(typeof(data) != "undefined") { %>
-                    value="<%- data.title %>"
-                    <% } %>
-                  />
-                  <% if(typeof(errs) != "undefined") { %>
-                  <span style="color: red;"><%-errs.titleMsg%></span>
-                  <% } %>
-                </div>
-              </div>
-              <div class="space"></div>
-              <!-- author input  -->
-              <div class="row input-group-newsletter">
-                <div class="col">
-                  <input
-                    class="form-control"
-                    id="author"
-                    type="text"
-                    name="author"
-                    placeholder="Enter Author..."
+              <% if(!data) { %>
+                <h4 style="color: green;"><% "There is NO Book of the Specified BookId" %></h4>
+              <% }else{%> 
+                <!-- title input -->
+                <div class="row input-group-newsletter">
+                  <div class="col">
+                    <% if(typeof(data) != 'undefined') {%>
+                      <input type="hidden" id="bookId" name="bookId" value="<%- data._id %>" />
+                    <%}%>
+                    <input
+                      class="form-control"
+                      id="title"
+                      type="text"
+                      name="title"
+                      placeholder="Enter Title..."
+                      aria-label="Enter title..."
 
-                    <% if(typeof(data) !== "undefined") { %>
-                      value="<%- data.author %>"
+                      <% if(typeof(data) != "undefined") { %>
+                      value="<%- data.title %>"
                       <% } %>
-                  />
-                  <% if(typeof(errs) != "undefined") { %>
-                    <span style="color: red;"><%-errs.authorMsg%></span>
+                    />
+                    <% if(typeof(errs) != "undefined") { %>
+                    <span style="color: red;"><%-errs.titleMsg%></span>
                     <% } %>
+                  </div>
                 </div>
-              </div>
-              <div class="space"></div>
-              <!-- ISBN input  -->
-              <div class="row input-group-newsletter">
-                <div class="col">
-                  <input
-                    class="form-control"
-                    id="ISBN"
-                    type="text"
-                    name="ISBN"
-                    placeholder="Enter ISBN..."
+                <div class="space"></div>
+                <!-- author input  -->
+                <div class="row input-group-newsletter">
+                  <div class="col">
+                    <input
+                      class="form-control"
+                      id="author"
+                      type="text"
+                      name="author"
+                      placeholder="Enter Author..."
 
-                    <% if(typeof(data) !== "undefined") { %>
-                      value="<%- data.ISBN %>"
+                      <% if(typeof(data) !== "undefined") { %>
+                        value="<%- data.author %>"
+                        <% } %>
+                    />
+                    <% if(typeof(errs) != "undefined") { %>
+                      <span style="color: red;"><%-errs.authorMsg%></span>
                       <% } %>
-                  />
-                  <% if(typeof(errs) != "undefined") { %>
-                    <span style="color: red;"><%-errs.ISBNMsg%></span>
-                    <% } %>
+                  </div>
                 </div>
-              </div>
-              <div class="space"></div>
-              <!-- noOfPages input  -->
-              <div class="row input-group-newsletter">
-                <div class="col">
-                  <input
-                    class="form-control"
-                    id="noOfPages"
-                    type="text"
-                    name="noOfPages"
-                    placeholder="Enter Number Of Pages: "
+                <div class="space"></div>
+                <!-- ISBN input  -->
+                <div class="row input-group-newsletter">
+                  <div class="col">
+                    <input
+                      class="form-control"
+                      id="ISBN"
+                      type="text"
+                      name="ISBN"
+                      placeholder="Enter ISBN..."
 
-                    <% if(typeof(data) !== "undefined") { %>
-                      value="<%- data.noOfPages %>"
+                      <% if(typeof(data) !== "undefined") { %>
+                        value="<%- data.ISBN %>"
+                        <% } %>
+                    />
+                    <% if(typeof(errs) != "undefined") { %>
+                      <span style="color: red;"><%-errs.ISBNMsg%></span>
                       <% } %>
-                  />
-                  <% if(typeof(errs) != "undefined") { %>
-                    <span style="color: red;"><%-errs.noOfPagesMsg%></span>
-                    <% } %>
+                  </div>
                 </div>
-              </div>
-              <div class="space"></div>
-              <!-- price input  -->
-              <div class="row input-group-newsletter">
-                <div class="col">
-                  <input
-                    class="form-control"
-                    id="price"
-                    type="text"
-                    name="price"
-                    placeholder="Enter Price: "
+                <div class="space"></div>
+                <!-- noOfPages input  -->
+                <div class="row input-group-newsletter">
+                  <div class="col">
+                    <input
+                      class="form-control"
+                      id="noOfPages"
+                      type="text"
+                      name="noOfPages"
+                      placeholder="Enter Number Of Pages: "
 
-                    <% if(typeof(data) !== "undefined") { %>
-                      value="<%- data.price %>"
+                      <% if(typeof(data) !== "undefined") { %>
+                        value="<%- data.noOfPages %>"
+                        <% } %>
+                    />
+                    <% if(typeof(errs) != "undefined") { %>
+                      <span style="color: red;"><%-errs.noOfPagesMsg%></span>
                       <% } %>
-                  />
-                  <% if(typeof(errs) != "undefined") { %>
-                    <span style="color: red;"><%-errs.priceMsg%></span>
-                    <% } %>
+                  </div>
                 </div>
-              </div>
-              <div class="space"></div>
-              <!-- yearPublished input -->
-              <div class="row input-group-newsletter">
-                <div class="col">
-                  <input
-                    class="form-control"
-                    id="yearPublished"
-                    type="number"
-                    name="yearPublished"
-                    placeholder="Enter Published Year: "
-                    aria-label="Enter zipcode..."
+                <div class="space"></div>
+                <!-- price input  -->
+                <div class="row input-group-newsletter">
+                  <div class="col">
+                    <input
+                      class="form-control"
+                      id="price"
+                      type="text"
+                      name="price"
+                      placeholder="Enter Price: "
 
-                    <% if(typeof(data) !== "undefined") { %>
-                      value="<%- data.yearPublished %>"
+                      <% if(typeof(data) !== "undefined") { %>
+                        value="<%- data.price %>"
+                        <% } %>
+                    />
+                    <% if(typeof(errs) != "undefined") { %>
+                      <span style="color: red;"><%-errs.priceMsg%></span>
                       <% } %>
-                  />
-                  <% if(typeof(errs) != "undefined") { %>
-                    <span style="color: red;"><%-errs.yearPublishedMsg%></span>
-                    <% } %>
+                  </div>
                 </div>
-              </div>
-              <div class="space"></div>
+                <div class="space"></div>
+                <!-- yearPublished input -->
+                <div class="row input-group-newsletter">
+                  <div class="col">
+                    <input
+                      class="form-control"
+                      id="yearPublished"
+                      type="number"
+                      name="yearPublished"
+                      placeholder="Enter Published Year: "
+                      aria-label="Enter zipcode..."
 
-              <div class="space"></div>
-              <div>
-                <div class="col-auto">
-                  <button style="background-color: coral; text-overflow: ellipsis; border: none;"
-                    class="btn btn-primary"
-                    id="submitButton"
-                    type="submit"
-                    name="editBook-btn"
-                  >
-                    Edit Book
-                  </button>
+                      <% if(typeof(data) !== "undefined") { %>
+                        value="<%- data.yearPublished %>"
+                        <% } %>
+                    />
+                    <% if(typeof(errs) != "undefined") { %>
+                      <span style="color: red;"><%-errs.yearPublishedMsg%></span>
+                      <% } %>
+                  </div>
                 </div>
-              </div>
+                <div class="space"></div>
+
+                <div class="space"></div>
+                <div>
+                  <div class="col-auto">
+                    <button style="background-color: coral; text-overflow: ellipsis; border: none;"
+                      class="btn btn-primary"
+                      id="submitButton"
+                      type="submit"
+                      name="editBook-btn"
+                    >
+                      Edit Book
+                    </button>
+                  </div>
+                </div>
+              <%} %>
             </form>
           </div>
         </div>

@@ -2,6 +2,7 @@ const express=require('express');
 const bookRouter=express.Router();
 const {getBookHandler, postBookHandler, updateBookHandler, addBookHandler, editBookHandler, deleteBookHandler} = require('../Handlers/bookHandler');
 
+//http://localhost/3003/books
 //get all book from the db
 bookRouter.get('/', getBookHandler);
 

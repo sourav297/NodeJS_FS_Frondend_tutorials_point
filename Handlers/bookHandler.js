@@ -21,7 +21,7 @@ const getBookHandler = async(req, res) => {
         }
     }
     catch(err){
-        console.log("Error in getBookHandler");
+        //console.log("Error in getBookHandler");
         return errorTemplate(req, res, 'books', "Books", err.response.data.error.message, 'undefined', 'undefined');
     }
 }
@@ -36,7 +36,7 @@ const postBookHandler = async(req, res) => {
         return successTemplate(res, 'books', "Books", books.data.message, session, books.data.Result);
     }
     catch(err){
-        console.log("Error in postBookHandler");
+        //console.log("Error in postBookHandler");
         return errorTemplate(req, res, 'books', "Books", err.response.data.error.message, 'undefined', 'undefined');
     }
 }
@@ -48,7 +48,7 @@ const addBookHandler = async(req, res) => {
         return successTemplate(res, 'addBook', "Add a Book", "Enter Information of the Book", session);
     }
     catch(err){
-        console.log("Error in addBookHandler");
+        //console.log("Error in addBookHandler");
         return errorTemplate(req, res, 'books', "Books", err.response.data.error.message, 'undefined', 'undefined');
     }
 }
@@ -63,7 +63,7 @@ const updateBookHandler = async(req, res) => {
         return successTemplate(res, 'books', "Books", books.data.message, session, books.data.Result);
     }
     catch(err){
-        console.log("Error in updateBookHandler");
+        //console.log("Error in updateBookHandler");
         return errorTemplate(req, res, 'books', "Books", err.response.data.error.message, 'undefined', 'undefined');
     }
 }
@@ -77,7 +77,7 @@ const editBookHandler = async(req, res) => {
         return successTemplate(res, 'editBook', "Edit a Book", book.data.message, session, book.data.Result);
     }
     catch(err){
-        console.log("Error in editBookHandler");
+        //console.log("Error in editBookHandler");
         return errorTemplate(req, res, 'books', "Books", err.response.data.error.message, 'undefined', 'undefined');
     }
 }
@@ -91,7 +91,7 @@ const deleteBookHandler = async(req, res) => {
         return successTemplate(res, 'books', "Books", books.data.message, session, books.data.Result);
     }
     catch(err){
-        console.log("Error in deleteBookHandler: ", err);
+        //console.log("Error in deleteBookHandler: ", err);
         return errorTemplate(req, res, 'books', "Books", err.response.data.error.message, 'undefined', 'undefined');
     }
 }
